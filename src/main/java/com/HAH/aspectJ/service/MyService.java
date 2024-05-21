@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyService {
 	
-	public void demoWork() {
+	public void demoWork(String name, int data) {
 		System.out.println("This message from MyService.");
 	}
 

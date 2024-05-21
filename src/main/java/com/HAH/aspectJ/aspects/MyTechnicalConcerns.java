@@ -1,5 +1,7 @@
 package com.HAH.aspectJ.aspects;
 
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -12,9 +14,24 @@ public class MyTechnicalConcerns {
 	@Pointcut("bean(myService)")
 	void myServiceBean() {
 	}
-	
-	@Before(value = "myServiceBean()")
-	public void BeforeLog() {
+
+	@Before(value = "myServiceBean() && args(message,..)", argNames = "message")
+	public void BeforeLog(String message) {
 		System.out.println("Before Log Execution.");
+		System.out.println("Message is %s".formatted(message));
 	}
+
+	@AfterReturning(value = "myServiceBean() && args(*,count)", argNames = "count")
+	public void AfterReturnLog(int count) {
+		System.out.println("After Returning Log Execution.");
+		System.out.println("Count is %s.".formatted(count));
+	}
+
+	@After(value = "myServiceBean() && args(value,count)", argNames = "value,count")
+	public void AfterLog(String value, int count) {
+		System.out.println("After Log Execution.");
+		System.out.println("Value is %s".formatted(value));
+		System.out.println("Count is %d".formatted(count));
+	}
+
 }
