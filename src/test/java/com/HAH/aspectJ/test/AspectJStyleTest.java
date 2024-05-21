@@ -9,12 +9,13 @@ import com.HAH.aspectJ.service.MyService;
 
 @SpringJUnitConfig(classes = ApplicationConfig.class)
 public class AspectJStyleTest {
-	
+
 	@Autowired
 	private MyService myService;
 
 	@Test
 	void demoTest() {
 		myService.demoWork("Htun Aung Hlaing", 7);
+		myService.divided(7, 0);
 	}
 }

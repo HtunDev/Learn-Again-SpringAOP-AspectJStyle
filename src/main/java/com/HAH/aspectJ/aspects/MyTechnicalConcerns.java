@@ -2,6 +2,7 @@ package com.HAH.aspectJ.aspects;
 
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -36,6 +37,15 @@ public class MyTechnicalConcerns {
 		System.out.println("After Log Execution.");
 		System.out.println("Value is %s".formatted(value));
 		System.out.println("Count is %d".formatted(count));
+	}
+
+	@AfterThrowing(value = "myServiceBean() && args(x,y)", throwing = "exception", argNames = "exception,x,y")
+	public void AfterThrowingLog(RuntimeException exception, int x, int y) {
+		System.out.println("After Throwing Execution.");
+		System.out.println("Value of %d.".formatted(x));
+		System.out.println("Value of %d.".formatted(y));
+		System.out.println(exception.getClass().getSimpleName());
+		System.out.println(exception.getMessage());
 	}
 
 }

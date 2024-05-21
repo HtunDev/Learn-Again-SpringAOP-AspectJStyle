@@ -12,4 +12,8 @@ public class MyService {
 		return new Result(name, data);
 	}
 
+	public int divided(int a, int b) {
+		return a / b;
+	}
+
 }
