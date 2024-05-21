@@ -15,6 +15,6 @@ public class AspectJStyleTest {
 
 	@Test
 	void demoTest() {
-		myService.demoWork("Hi, Welcome", 7);
+		myService.demoWork("Htun Aung Hlaing", 7);
 	}
 }

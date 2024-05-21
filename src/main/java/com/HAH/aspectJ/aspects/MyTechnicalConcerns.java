@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Configuration;
 
+import com.HAH.aspectJ.dto.Result;
+
 @Aspect
 @Configuration
 public class MyTechnicalConcerns {
@@ -21,10 +23,12 @@ public class MyTechnicalConcerns {
 		System.out.println("Message is %s".formatted(message));
 	}
 
-	@AfterReturning(value = "myServiceBean() && args(*,count)", argNames = "count")
-	public void AfterReturnLog(int count) {
+	@AfterReturning(value = "myServiceBean() && args(name,count)", argNames = "result,name,count", returning = "result")
+	public void AfterReturnLog(Result result, String name, int count) {
 		System.out.println("After Returning Log Execution.");
+		System.out.println("Name is %s.".formatted(name));
 		System.out.println("Count is %s.".formatted(count));
+		System.out.println(result);
 	}
 
 	@After(value = "myServiceBean() && args(value,count)", argNames = "value,count")
